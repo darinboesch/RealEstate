@@ -1,0 +1,8 @@
+{
+    "Databases": {
+        "RealEstateDatabaseName": "realestate"
+    },
+    "ConnectionStrings": {
+        "RealEstateConnection": "mongodb://localhost",
+    }
+}
