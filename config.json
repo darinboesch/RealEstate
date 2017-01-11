@@ -3,6 +3,6 @@
         "RealEstateDatabaseName": "realestate"
     },
     "ConnectionStrings": {
-        "RealEstateConnection": "mongodb://localhost",
+        "RealEstateConnection": "mongodb://localhost"
     }
 }
