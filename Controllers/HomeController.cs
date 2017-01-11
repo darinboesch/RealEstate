@@ -1,7 +1,5 @@
 
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using MongoDB.Driver;
 using RealEstate.App_Start;
 
 namespace RealEstate.Controllers

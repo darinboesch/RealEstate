@@ -62,7 +62,7 @@ namespace RealEstate
                 config.MapRoute(
                     name: "Default",
                     template: "{controller}/{action}/{id?}",
-                    defaults: new { controller = "Home", action = "Get" }
+                    defaults: new { controller = "Rentals", action = "Index" }
                 );
             });
         }
