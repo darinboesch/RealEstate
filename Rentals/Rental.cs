@@ -29,5 +29,13 @@ namespace RealEstate.Rentals
 
         [BsonRepresentation(BsonType.Double)]
         public decimal Price { get; set; }
+
+        public List<PriceAdjustment> Adjustments = new List<PriceAdjustment>();
+
+        public void AdjustPrice(AdjustPrice adjustPrice) {
+            var adjustment = new PriceAdjustment(adjustPrice, Price);
+            Adjustments.Add(adjustment);
+            Price = adjustPrice.NewPrice;
+        }
     }
 }
