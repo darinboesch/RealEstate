@@ -1,7 +1,7 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using MongoDB.Bson;
 using MongoDB.Driver;
 using RealEstate.App_Start;
 using RealEstate.Rentals;
@@ -16,9 +16,33 @@ namespace RealEstate.Controllers
             _context = context;
         }
 
-        public ActionResult Index() {
-            var rentals = _context.Rentals.Find(_ => true).ToList();
-            return View(rentals);
+        public ActionResult Index(RentalsFilter filters) {
+            //var rentals = _context.Rentals.Find(_ => true).ToList();
+            var rentals = FilterRentals(filters);
+            var model = new RentalsList {
+                Rentals = rentals,
+                Filters = filters
+            };
+            return View(model);
+        }
+
+        IEnumerable<Rental> FilterRentals(RentalsFilter filters) {
+            IQueryable<Rental> rentals = _context
+                                            .Rentals
+                                            .AsQueryable()
+                                            .OrderBy(o => o.Price);
+
+            if (filters.MinimumRooms.HasValue) {
+                rentals = rentals
+                            .Where(r => r.NumberOfRooms >= filters.MinimumRooms);
+            }
+
+            if (filters.PriceLimit.HasValue) {
+                rentals = rentals
+                            .Where(r => r.Price < filters.PriceLimit);
+            }
+
+            return rentals.ToList();
         }
 
         public ActionResult Post() {

@@ -13,7 +13,6 @@ namespace RealEstate.Rentals
         public string Description { get; set; }
         public int NumberOfRooms { get; set; }
         public List<string> Address = new List<string>();
-        private PostRental postRental;
 
         public Rental() {
             // needed for mongo to deserialize
